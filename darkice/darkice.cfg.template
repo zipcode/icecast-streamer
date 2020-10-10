@@ -32,10 +32,5 @@ name            = magpie
                             # name of the stream
 description     = Magpie stream
                             # description of the stream
-url             = http://magpie.local
-                            # URL related to the stream
-genre           = my own    # genre of the stream
 public          = yes       # advertise this stream?
-#localDumpFile	= dump.ogg  # local dump file
-
 
