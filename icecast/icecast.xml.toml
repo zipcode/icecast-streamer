@@ -1,0 +1,11 @@
+[template]
+src = "icecast.xml.template"
+dest = "/etc/icecast.xml"
+owner = 1000
+group = 1000
+mode = "0644"
+keys = [
+  "ICECAST_SOURCE_PASSWORD",
+  "ICECAST_RELAY_PASSWORD",
+  "ICECAST_ADMIN_PASSWORD"
+ ]

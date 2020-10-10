@@ -1,0 +1,7 @@
+#!/bin/bash
+export RANDPASSWORD=`openssl rand -base64 15`
+export ICECAST_ADMIN_PASSWORD=${ICECAST_ADMIN_PASSWORD:-$RANDPASSWORD}
+export ICECAST_RELAY_PASSWORD=${ICECAST_RELAY_PASSWORD:-$RANDPASSWORD}
+export ICECAST_SOURCE_PASSWORD=${ICECAST_SOURCE_PASSWORD:-$RANDPASSWORD}
+confd -onetime -backend env
+exec icecast -c /etc/icecast.xml

@@ -1,0 +1,34 @@
+version: '3'
+services:
+  icecast:
+    build: icecast
+    volumes:
+     - ./icecast/icecast.xml.template:/etc/confd/templates/icecast.xml.template
+     - ./icecast/icecast.xml.toml:/etc/confd/conf.d/icecast.xml.toml
+    ports:
+     - "8000:8000/tcp"
+    env_file:
+     - .env
+    tmpfs:
+     - /tmp
+    stdin_open: true
+    tty: true
+    healthcheck:
+     test: ["CMD", "curl", "-f", "http://localhost:8000"]
+     interval: 30s
+     timeout: 1s
+     retries: 1
+  darkice:
+    build: darkice
+    env_file:
+     - .env
+    volumes:
+     - ./darkice/darkice.cfg.template:/etc/darkice.cfg.template
+    devices:
+     - /dev/snd
+    stdin_open: true
+    tty: true
+    depends_on:
+     - icecast
+    cap_add:
+     - SYS_NICE
